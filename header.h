@@ -9,6 +9,8 @@ namespace CONST_VAR
     };
 }
 
+
+
 class me //메세지를 보낼 사람
 {
 private:
