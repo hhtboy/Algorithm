@@ -1,4 +1,4 @@
-#include "test.h"
+#include "Test.h"
 
 void sort(int *arr, const int n)
 {
@@ -100,4 +100,43 @@ void Permutation(int *a, const int k, const int m)
     {
         return num * Factorial(num - 1);
     }
+
+}
+//-------------------------------------------------//
+void Test::Init()
+{
+    width = 10;
+    height = 20;
+}
+
+int Test::GetHeight()
+{
+    return height;
+}
+
+int Test::GetWidth()
+{
+    return width;
+}
+
+bool Test::operator==(const Test& test)
+{
+    if(this == &test)
+    {
+        return 1;
+    }
+    if(test.height == height)
+    {
+        return 1;
+    }
+
+    else
+    {
+        return 0;
+    }
+}
+
+std::ostream& operator<<(std::ostream&,Test &test)
+{
+
 }
