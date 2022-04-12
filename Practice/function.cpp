@@ -1,4 +1,4 @@
-#include "Test.h"
+#include "test.h"
 
 void sort(int *arr, const int n)
 {
@@ -136,7 +136,12 @@ bool Test::operator==(const Test& test)
     }
 }
 
-std::ostream& operator<<(std::ostream&,Test &test)
-{
+// std::ostream& operator<<(std::ostream&,Test &test)
+// {
 
+// }
+
+void Test::childTest::Init()
+{
+    std::cout << "childTest";
 }

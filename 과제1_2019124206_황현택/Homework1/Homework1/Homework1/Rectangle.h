@@ -9,6 +9,7 @@ private:
 	int width;
 	int height;
 	int xLow, yLow;
+	int test;
 
 public:
 	//생성자, 파괴자

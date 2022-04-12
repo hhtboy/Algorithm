@@ -16,7 +16,12 @@ int MyBinarySearch(int *arr, const int x, const int left, const int right);
 class Test
 {
 public:
-    //Test(); //생성자의 이름은 클래스 이름
+    class childTest
+    {
+        public:
+            void Init();
+    };
+    // Test(); //생성자의 이름은 클래스 이름
 
     // 연산자 overloading
     bool operator==(const Test &test); 

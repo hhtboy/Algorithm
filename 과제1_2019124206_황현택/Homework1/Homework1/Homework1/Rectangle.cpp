@@ -4,7 +4,7 @@
 
 int Rectangle::id = 0;
 
-//»ı¼ºÀÚ
+//ìƒì„±ì
 Rectangle::Rectangle(int x, int y, int w, int h)
 {
 	xLow = x;
@@ -12,26 +12,23 @@ Rectangle::Rectangle(int x, int y, int w, int h)
 	width = w;
 	height = h;
 
-	std::cout << ++id << "¹øÂ° Rectangle °´Ã¼ »ı¼º\n\n";
+	std::cout << ++id << "ë²ˆì§¸ Rectangle ê°ì²´ ìƒì„±\n\n";
 }
 
-//»ı¼ºÀÚ ¿À¹ö·Îµù : µ¥ÀÌÅÍ¸¦ Á÷Á¢ ÀÔ·Â
+//ìƒì„±ì ì˜¤ë²„ë¡œë”© : ë°ì´í„°ë¥¼ ì§ì ‘ ì…ë ¥
 Rectangle::Rectangle()
 {
-	xLow = 0;
-	yLow = 0;
-	width = 0;
-	height = 0;
+	std::cout << "new Rectangle" << std::endl;
 }
 
-//ÆÄ±«ÀÚ
+//íŒŒê´´ì
 Rectangle::~Rectangle()
 {
-	std::cout << "ÁÂÇ¥ (" << xLow << ',' << yLow << ')'
-		<< " Rectangle °´Ã¼ ¼Ò¸ê\n\n";
+	std::cout << "ì¢Œí‘œ (" << xLow << ',' << yLow << ')'
+		<< " Rectangle ê°ì²´ ì†Œë©¸\n\n";
 }
 
-//Ãâ·Â ¿¬»êÀÚ
+//ì¶œë ¥ ì—°ì‚°ì
 std::ostream& operator <<(std::ostream& os, Rectangle& r)
 {
 	os << "height : " << r.height << std::endl
@@ -42,7 +39,7 @@ std::ostream& operator <<(std::ostream& os, Rectangle& r)
 	return os;
 }
 
-//ÀÔ·Â ¿¬»êÀÚ
+//ì…ë ¥ ì—°ì‚°ì
 std::istream& operator >>(std::istream& os, Rectangle& r)
 {
 	os >> r.height
@@ -57,7 +54,7 @@ std::istream& operator >>(std::istream& os, Rectangle& r)
 	return os;
 }
 
-//´õÇÏ±â ¿¬»êÀÚ
+//ë”í•˜ê¸° ì—°ì‚°ì
 Rectangle Rectangle::operator +(Rectangle& r)
 {
 
@@ -70,4 +67,3 @@ Rectangle Rectangle::operator +(Rectangle& r)
 
 	return Rectangle(sum_x, sum_y, sum_w, sum_h);
 }
-
