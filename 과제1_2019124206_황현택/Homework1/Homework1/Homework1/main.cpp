@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "Rectangle.h"
 
 int main()
@@ -13,13 +13,23 @@ int main()
 	
 	// std::cout << r1<<std::endl;
 	
+	//r1 생성
 	Rectangle* r1 = new Rectangle();
-	Rectangle* r2 = new Rectangle();
 	std::cin >> *r1;
-	std::cin >> *r2;
+	std::cout << std::endl;
+	std::cout << *r1;
+	r1->CulRectArea();
 
-	std::cout << *r1 << std::endl
-			  << *r2 << std::endl;
+	std::cout << std::endl;
+
+	//r2 생성
+	Rectangle* r2 = new Rectangle();
+	std::cin >> *r2;
+	std::cout << std::endl;
+	std::cout << *r2;
+	r2->CulRectArea();
+	std::cout << std::endl;
+	Rectangle r3 = r1->OverlapRect(*r1, *r2);
 
 	// delete r2;
 }

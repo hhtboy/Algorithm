@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <iostream>
 
@@ -9,17 +9,33 @@ private:
 	int width;
 	int height;
 	int xLow, yLow;
-	int test;
 
 public:
-	//»ı¼ºÀÚ, ÆÄ±«ÀÚ
+	//ìƒì„±ì, íŒŒê´´ì
 	Rectangle(int, int, int, int);
 	Rectangle();
 	~Rectangle();
 
-	//ÀÔ,Ãâ·Â ¿¬»êÀÚ ¿À¹ö·Îµù
+	//ë„“ì´ ê³„ì‚° í•¨ìˆ˜
+	void CulRectArea();
+
+	//ê²¹ì¹˜ëŠ” ì˜ì—­ì— ëŒ€í•œ ì •ë³´ ì¶œë ¥
+	Rectangle OverlapRect(Rectangle& r1, Rectangle& r2);
+
+	//ì…,ì¶œë ¥ ì—°ì‚°ì ì˜¤ë²„ë¡œë”©
 	friend std::ostream& operator <<(std::ostream&, Rectangle&); 
 	friend std::istream& operator >>(std::istream&, Rectangle&); 
 
 	Rectangle operator +(Rectangle&);
+
+	//í¸ì˜ë¥¼ ìœ„í•´ ë§Œë“  Max,Min í•¨ìˆ˜
+	int Max(int a, int b)
+	{
+		return (a >= b) ? a : b;
+	}
+
+	int Min(int a, int b)
+	{
+		return (a <= b) ? a : b;
+	}
 };
