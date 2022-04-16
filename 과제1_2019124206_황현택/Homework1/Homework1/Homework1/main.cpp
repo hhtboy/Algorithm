@@ -3,16 +3,18 @@
 
 int main()
 {
-	// Rectangle r1(1, 1, 3, 4);
-	// std::cout << r1;
-	
-	// Rectangle* r2 = new Rectangle(2, 3, 5, 5);
-	// std::cout << *r2;
+	//기존 r1, r2 이름을 R1, R2로 변경함
+	Rectangle R1(1, 1, 3, 4);
+	std::cout << R1;
 
-	// r1 = r1 + *r2;
+	Rectangle* R2 = new Rectangle(2, 3, 5, 5);
+	std::cout << *R2;
+
+	R1 = R1 + *R2;
 	
-	// std::cout << r1<<std::endl;
+	std::cout << R1<<std::endl;
 	
+
 	//r1 생성
 	Rectangle* r1 = new Rectangle();
 	std::cin >> *r1;
@@ -29,7 +31,12 @@ int main()
 	std::cout << *r2;
 	r2->CulRectArea();
 	std::cout << std::endl;
+
+	//겹쳐진 영역에 대한 r3 생성
 	Rectangle r3 = r1->OverlapRect(*r1, *r2);
 
-	// delete r2;
+	//동적으로 생성한 R2,r1,r2 객체 삭제
+	delete R2;
+	delete r1;
+	delete r2;
 }

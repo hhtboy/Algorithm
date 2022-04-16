@@ -29,13 +29,8 @@ public:
 	Rectangle operator +(Rectangle&);
 
 	//편의를 위해 만든 Max,Min 함수
-	int Max(int a, int b)
-	{
-		return (a >= b) ? a : b;
-	}
+	int Max(int a, int b);
 
-	int Min(int a, int b)
-	{
-		return (a <= b) ? a : b;
-	}
+
+	int Min(int a, int b);
 };

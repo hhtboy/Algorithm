@@ -11,8 +11,7 @@ Rectangle::Rectangle(int x, int y, int w, int h)
 	yLow = y;
 	width = w;
 	height = h;
-
-	std::cout << ++id << "번째 Rectangle 객체 생성\n\n";
+	std::cout << ++id << "번째 Rectangle 객체 생성\n";
 }
 
 //생성자 오버로딩 : 데이터를 직접 입력
@@ -24,8 +23,6 @@ Rectangle::Rectangle()
 	width = 0;
 	height = 0;
 	std::cout << "새로운 Rectangle 객체를 생성했습니다." << std::endl;
-
-	
 }
 
 //파괴자
@@ -53,7 +50,7 @@ Rectangle Rectangle::OverlapRect(Rectangle& r1, Rectangle& r2)
 	if (width <= 0 || height <= 0)
 	{
 		std::cout << "겹치는 영역이 없습니다." << std::endl;
-		//return ;
+		return r1;
 	}
 
 	std::cout << "영역의 height : " << height<<std::endl;
@@ -71,7 +68,8 @@ std::ostream& operator <<(std::ostream& os, Rectangle& r)
 	os << "height : " << r.height << std::endl
 		<< "width : " << r.width << std::endl
 		<< "x : " << r.xLow << std::endl
-		<< "y : " << r.yLow << std::endl;
+		<< "y : " << r.yLow << std::endl
+		<< std::endl;
 
 	return os;
 }
@@ -104,4 +102,15 @@ Rectangle Rectangle::operator +(Rectangle& r)
 	sum_h = this->height + r.height;
 
 	return Rectangle(sum_x, sum_y, sum_w, sum_h);
+}
+
+//편의를 위해 만든 Max,Min 함수
+int Rectangle::Max(int a, int b)
+{
+	return (a >= b) ? a : b;
+}
+
+int Rectangle::Min(int a, int b)
+{
+	return (a <= b) ? a : b;
 }
