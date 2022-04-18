@@ -14,5 +14,6 @@ private:
 public:
 	//생성자
 	Polynomial();
-	void GetTerms();
+	void NewTerms(int, int);
+	void ShowTermArr();
 };
