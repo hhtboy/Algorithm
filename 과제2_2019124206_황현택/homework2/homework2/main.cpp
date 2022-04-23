@@ -3,33 +3,39 @@
 
 int main()
 {
-	std::cout << "다항식 입력 :";
+	//a 다항식 입력받기
+	std::cout << "다항 식 A입력 :";
 	Polynomial a;
+	a.InputPoly();
 
-	while(true)
-	{
-		int coef;
-		int exp;
-		std::cin >> coef;
-		if (std::cin) 
-		{
-			std::cin >> exp;
-			if (std::cin)
-			{
-				a.NewTerms(coef, exp);
-			}
-			else
-			{
-				break;
-			}
-		}
+	//b다항식 입력받기
+	std::cout << "다항 식 B입력 :";
+	Polynomial b;
+	b.InputPoly();
 
-		else
-		{
-			break;
-		}
-	}
-
-	//다항식 입력 이후
+	//a 다항식 입력 이후
+	a.SortTermArr();
+	a.CleanPoly();
 	a.ShowTermArr();
+
+	std::cout << std::endl;
+
+	// b 다항식 입력 이후
+	b.SortTermArr();
+	b.CleanPoly();
+	b.ShowTermArr();
+
+	std::cout << std::endl;
+
+	//a+b
+	Polynomial c = a + b;
+	// c.SortTermArr();
+	// c.CleanPoly();
+	c.ShowTermArr();
+}
+
+//sort 함수에서 사용되는 비교 기준
+bool compare(Term a,Term b)
+{
+	return a.GetExp() > b.GetExp();
 }

@@ -3,7 +3,10 @@ class Polynomial;
 
 class Term
 {
-friend Polynomial;
+friend class Polynomial;
+public:
+	//exp 리턴
+	int GetExp();
 
 private:
 	//계수

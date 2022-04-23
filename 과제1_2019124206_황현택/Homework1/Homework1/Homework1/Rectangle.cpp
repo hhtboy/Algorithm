@@ -28,7 +28,7 @@ Rectangle::Rectangle()
 //파괴자
 Rectangle::~Rectangle()
 {
-	std::cout << "좌표 (" << xLow << ',' << yLow << ')'
+	std::cout <<"좌표 (" << xLow << ',' << yLow << ')'
 		<< " Rectangle 객체 소멸\n\n";
 }
 
