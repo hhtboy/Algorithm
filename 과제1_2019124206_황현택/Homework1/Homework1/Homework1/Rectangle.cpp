@@ -41,12 +41,18 @@ void Rectangle::CulRectArea()
 //겹치는 영역에 대한 정보 출력
 Rectangle Rectangle::OverlapRect(Rectangle& r1, Rectangle& r2)
 {
+	/*겹치는 영역에 대한 Rectangle 객체
+	xLow, yLow는 둘 중 큰 값이고,
+	width, height는 (좌표-좌표)로 계산
+	width : 두 개의 우변 중 왼쪽 변의 x좌표 - xLow
+	height : 두 개의 윗변 중 아래의 변의 y좌표 - yLow
+	*/
 	int xLow = Max(r1.xLow, r2.xLow);
 	int yLow = Max(r1.yLow, r2.yLow);
 	int width = Min(r1.xLow + r1.width, r2.xLow + r2.width) - xLow;
 	int height = Min(r1.yLow + r1.height, r2.yLow + r2.height) - yLow;
 	
-	//겹치는 영역 체크
+	//겹치는 영역 체크, 겹치지 않으면 에러 출력
 	if (width <= 0 || height <= 0)
 	{
 		std::cout << "겹치는 영역이 없습니다." << std::endl;
