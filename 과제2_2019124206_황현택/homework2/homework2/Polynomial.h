@@ -6,7 +6,6 @@ class Polynomial
 private:
 	//몇번째인지 세기 위한 static변수와 고유값을 나타내는 const변수
 	static char id;
-	char ID;
 
 	//계수(coef)가 0이 아닌 term의 Array
 	Term* termArr;
@@ -18,6 +17,9 @@ private:
 	int terms;
 	
 public:
+	//객체 별 고유 ID값
+	char ID;
+
 	//생성자
 	Polynomial();
 	
@@ -45,8 +47,9 @@ public:
 	//다항식 곱셈 오버로딩
 	Polynomial operator*(Polynomial);
 
-	//Eval함수
-	void EvalPoly(int);
+	//대입값 계산해서 반환하는 Eval함수
+	float Eval(float);
 };
 
 bool compare(Term a, Term b);
+float Pow(float, int);

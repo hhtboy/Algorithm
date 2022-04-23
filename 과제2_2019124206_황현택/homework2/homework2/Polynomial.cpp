@@ -61,11 +61,10 @@ void Polynomial::ShowTermArr()
 	//항이 0밖에 없으면 0을 출력, 실제로는 (0,0) term이 저장돼 있음
 	if(terms ==0)
 	{
-		std::cout << "입력한 식 "<<ID<<" : " << 0;
+		std::cout << 0;
 		return;
 	}
 
-	std::cout << "입력한 식 " <<ID<< " : ";
 	//마지막 항 뒤는 연산자가 안 오므로 마지막 항 제외하고 반복
 	for (int i = 0; i < terms - 1; i++)
 	{
@@ -207,8 +206,53 @@ Polynomial Polynomial::operator+(Polynomial b)
 	return c;
 }
 
-// * 연산자 오버로딩
-// Polynomial Polynomial::operator*(Polynomial b)
-// {
+//* 연산자 오버로딩
+Polynomial Polynomial::operator*(Polynomial b)
+{
+	Polynomial d;
+	float _coef;
+	int _exp;
+	for (int i = 0; i < terms; i++)
+	{
+		for (int j = 0; j < b.terms;j++)
+		{
+			float a_coef = termArr[i].coef;
+			float b_coef = b.termArr[j].coef;
+			int a_exp = termArr[i].exp;
+			int b_exp = b.termArr[j].exp;
 
-// }
+			_coef = a_coef * b_coef;
+			_exp = a_exp + b_exp;
+			d.NewTerms(_coef, _exp);
+		}
+	}
+	return d;
+}
+
+//Eval 함수
+float Polynomial::Eval(float x)
+{
+	float eval = 0;
+	for (int i = 0; i < terms; i++)
+	{
+		eval += termArr[i].coef * (Pow(x, termArr[i].exp));
+	}
+		return eval;
+}
+
+//sort 함수에서 사용되는 비교 기준
+bool compare(Term a,Term b)
+{
+	return a.GetExp() > b.GetExp();
+}
+
+
+float Pow(float f, int e)
+{
+	float result = 1.0f;
+	for (int i = 0; i < e; i++)
+	{
+		result = result * f;
+	}
+	return result;
+}
