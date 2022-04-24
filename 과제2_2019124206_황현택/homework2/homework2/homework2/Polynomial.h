@@ -33,13 +33,13 @@ public:
 	void ShowTermArr();
 
 	//index 항 제거
-	void CleanTermArr(int index); 
+	void CleanIndex(int index); 
 
 	//다항식 정렬
 	void SortTermArr();
 
 	//계수 정리 함수(계수가 0이면 그 항 삭제)
-	void CleanPoly();
+	void CleanTermArr();
 
 	//다항식 덧셈 오버로딩
 	Polynomial operator+(Polynomial);

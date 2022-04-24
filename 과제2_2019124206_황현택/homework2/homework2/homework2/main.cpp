@@ -15,7 +15,7 @@ int main()
 
 	//a 다항식 입력 이후
 	a.SortTermArr();
-	a.CleanPoly();
+	a.CleanTermArr();
 	std::cout << "입력 한 식 " << a.ID << " : ";
 	a.ShowTermArr();
 
@@ -23,7 +23,7 @@ int main()
 
 	// b 다항식 입력 이후
 	b.SortTermArr();
-	b.CleanPoly();
+	b.CleanTermArr();
 	std::cout << "입력 한 식 " << b.ID << " : ";
 	b.ShowTermArr();
 	std::cout << std::endl;
@@ -36,15 +36,15 @@ int main()
 
 	// std::cout << std::endl;
 
-	//a*b
-	Polynomial d = a * b;
-	d.SortTermArr();
-	d.CleanPoly();
+	//a*b 
+	Polynomial c = a * b;
+	c.SortTermArr();
+	c.CleanTermArr();
 	std::cout << "A X B = ";
-	d.ShowTermArr();
+	c.ShowTermArr();
 
 	std::cout << std::endl;
-
+	
 	//다항식에 대입 값 출력
 	float x;
 	std::cout << "대입 할 값 x 입력 : ";
@@ -52,6 +52,6 @@ int main()
 	std::cout << "결과 : " << a.ID << "(" << x << ")"
 			  << " = " << a.Eval(x) << ", "
 			  << b.ID << "(" << x << ")"
-			  << " = " << b.Eval(x) << ", "<< d.ID << "(" << x << ")"
-			  << " = " << d.Eval(x) << ", ";
+			  << " = " << b.Eval(x) << ", "<< c.ID << "(" << x << ")"
+			  << " = " << c.Eval(x) << ", ";
 }

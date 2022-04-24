@@ -24,7 +24,7 @@ void Polynomial::InputPoly()
 		if(std::getchar() != ' ')
 		{
 			std::cout << "계수와 지수를 모두 입력해주세요";
-			return ;
+			exit(-1);
 			//break;
 		}
 		std::cin >> e;
@@ -117,7 +117,7 @@ void Polynomial::ShowTermArr()
 }
 
 //특정 index 항 제거
-void Polynomial::CleanTermArr(int index)
+void Polynomial::CleanIndex(int index)
 {
 	Term *temp = new Term[capacity];
 	std::copy(termArr, termArr + index, temp);
@@ -134,7 +134,7 @@ void Polynomial::SortTermArr()
 }
 
 //다항식 계수를 정리하는 함수
-void Polynomial::CleanPoly()
+void Polynomial::CleanTermArr()
 {
 	for (int i = 0; i < terms;i++)
 	{
@@ -154,7 +154,7 @@ void Polynomial::CleanPoly()
 	{
 		if(termArr[i].coef == 0)
 		{
-			CleanTermArr(i);
+			CleanIndex(i);
 			i--;
 			terms--;
 		}
@@ -246,7 +246,7 @@ bool compare(Term a,Term b)
 	return a.GetExp() > b.GetExp();
 }
 
-
+//거듭제곱 구현
 float Pow(float f, int e)
 {
 	float result = 1.0f;
@@ -256,3 +256,4 @@ float Pow(float f, int e)
 	}
 	return result;
 }
+
