@@ -1,5 +1,3 @@
-#include <iostream>
-#include "Bank.h"
 /*
 큐의 full 문제
 	하나 지우고 하나 넣고를 반복 --> n-1의 작업 필요
@@ -24,11 +22,10 @@ Push
 	
 	
 */
+#include "Bag.h"
+#include "Deque.h"
 
 int main()
 {
-	Bank A;
-	A.ShowData();
+    Deque<int> A;
 }
-
-
