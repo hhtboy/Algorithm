@@ -22,7 +22,8 @@ public:
 
 	//생성자
 	Polynomial();
-	
+	~Polynomial();
+
 	//다항식 입력 받기
 	void InputPoly();
 
@@ -49,6 +50,8 @@ public:
 
 	//대입값 계산해서 반환하는 Eval함수
 	float Eval(float);
+
+	void ss();
 };
 
 bool compare(Term a, Term b);

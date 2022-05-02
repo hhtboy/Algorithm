@@ -7,6 +7,7 @@ int main()
 	std::cout << "다항 식 A입력 :";
 	Polynomial a;
 	a.InputPoly();
+	
 
 	//b다항식 입력받기
 	std::cout << "다항 식 B입력 :";

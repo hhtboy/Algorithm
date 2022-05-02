@@ -13,6 +13,11 @@ Polynomial::Polynomial()
 	terms = 0;
 }
 
+Polynomial::~Polynomial()
+{
+	delete[] termArr;
+}
+
 void Polynomial::InputPoly()
 {
 	float c;
@@ -238,6 +243,11 @@ float Polynomial::Eval(float x)
 		eval += termArr[i].coef * (Pow(x, termArr[i].exp));
 	}
 		return eval;
+}
+
+void Polynomial::ss()
+{
+	std::cout << "계수:"<<termArr[0].coef;
 }
 
 //sort 함수에서 사용되는 비교 기준
