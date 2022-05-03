@@ -57,10 +57,10 @@ RM = /usr/local/Cellar/cmake/3.23.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/hwanghyeontaeg/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택
+CMAKE_SOURCE_DIR = /Users/hhtboy/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/hwanghyeontaeg/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build
+CMAKE_BINARY_DIR = /Users/hhtboy/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hwanghyeontaeg/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build/CMakeFiles /Users/hwanghyeontaeg/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hhtboy/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build/CMakeFiles /Users/hhtboy/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hwanghyeontaeg/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/hhtboy/Documents/GitHub/AlgorithmStudy/과제3_2019124206_황현택/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,30 +129,6 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-Bank.o: Bank.cpp.o
-.PHONY : Bank.o
-
-# target to build an object file
-Bank.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Bank.cpp.o
-.PHONY : Bank.cpp.o
-
-Bank.i: Bank.cpp.i
-.PHONY : Bank.i
-
-# target to preprocess a source file
-Bank.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Bank.cpp.i
-.PHONY : Bank.cpp.i
-
-Bank.s: Bank.cpp.s
-.PHONY : Bank.s
-
-# target to generate assembly for a file
-Bank.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Bank.cpp.s
-.PHONY : Bank.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -186,9 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
-	@echo "... Bank.o"
-	@echo "... Bank.i"
-	@echo "... Bank.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

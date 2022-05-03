@@ -1,15 +1,15 @@
 #pragma once
 
-template <typename T>
+template <class T>
 class Bag
 {
-private:
+protected:
     T *array;
     int capacity;
     int top;
 
 public:
-    virtual Bag();
+    Bag();
     virtual ~Bag();
     virtual int Size() const;
     virtual bool isEmpty();
@@ -17,4 +17,3 @@ public:
     virtual void Pop();
 };
 
-#include "Bag.hpp"
