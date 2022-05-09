@@ -163,13 +163,13 @@ void Deque<U>::Push_left(const U& x)
 	//front가 0 보다 크면 1 감소시킴
 	if(front > 0)
 	{
-		this->array[front--] = x;
+		this->array[(front--)%this->capacity] = x;
 	}
 
 	//front가 0일 경우 Deque의 끝으로 front를 옮김
 	else // front == 0
 	{
-		this->array[front] = x;
+		this->array[(front)%this->capacity] = x;
 		front = this->capacity - 1;
 	}
 }
@@ -204,7 +204,7 @@ template <class U>
 void Deque<U>::Shift_left()
 {
 	//Push할 때 데이터를 보존하기 위해 push->pop순서로 한다
-	Push_right(this->array[front + 1]);
+	Push_right(this->array[(front + 1)%this->capacity]);
 	Pop_left();
 }
 
@@ -212,7 +212,7 @@ template <class U>
 void Deque<U>::Shift_right()
 {
 	//Push할 때 데이터를 보존하기 위해 push->pop순서로 한다
-	Push_left(this->array[rear]);
+	Push_left(this->array[rear%this->capacity]);
 	Pop_right();
 }
 

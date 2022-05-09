@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <cstdlib>
+#include <time.h>
 #include "Card.h"
 #include  "Deque.h"
 
@@ -19,10 +20,8 @@ public:
 	Deck(){};
 	Deck(int n);
 	~Deck();
-
-	int GetCardIndex(Card& C);
-	bool isFront(int index);
-	void MoveCard(Card&C, int index);
+	bool isFront(Card& C);
+	void MoveCard(Card& C);
 	void ShowDeck();
 	//n개의 랜덤 카드를 생성하고 넣어줌
 	friend void MakeRandCard(Deck& D, int num);
@@ -43,73 +42,62 @@ Deck::~Deck()
 	std::cout<<"Deck 소멸"<<std::endl;
 }
 
-int Deck::GetCardIndex(Card& C)
-{
-	int i;
-	for(i = (front + 1) % capacity ; i != (rear + 1) % capacity ; )
-	{
-		if(array[i] > C)
-		{
-			i = (i + 1) % capacity;
-		}
-		else
-		{
-			return i;
 
-		}
-	}
-	return i % capacity;
-}
 
 //shift를 front를 선택해서 할 지 결정
-bool Deck::isFront(int index)
+bool Deck::isFront(Card& C)
 {
 	f = 0;
 	r = 0;
-	if(index>front%capacity)
-		f = index - front%capacity - 1;
-	else
-		f = capacity - (front%capacity - index + 1);
-	if(index < rear)
-		r = rear%capacity - index;
-	else
-		r = capacity - (rear%capacity - index);
+	for(int i = 0;array[(front + i + 1)%capacity] > C  ; i++)
+	{
+		f++;
+	}
+	for(int i = 0;C > array[(rear - i)%capacity]; i++)
+	{
+		r++;
+	}
 
-	if(f <= r)
+	if( f<= r)
 		return true;
 	else
 		return false;
 }
 
-void Deck::MoveCard(Card& C, int index)
+void Deck::MoveCard(Card& C)
 {
+	ShowDeck();
 	//front 선택
-	if(isFront(index))
+	if(isFront(C))
 	{
-		int num = (front + 1)%capacity;
 		for(int i = 0 ; i < f  ; i++)
 		{
 			Shift_left();
+			ShowDeck();
 		}
 		Push_left(C);
+		ShowDeck();
 		for(int i = 0 ; i < f ; i++)
 		{
 			Shift_right();
+			ShowDeck();
 		}
 	}
 
 	//rear 선택
 	else
 	{
-		int num = (rear + 1)%capacity;
 		for(int i = 0 ; i < r ; i++)
 		{
 			Shift_right();
+			ShowDeck();
 		}
 		Push_right(C);
+		ShowDeck();
 		for(int i = 0 ; i < r ; i++)
 		{
 			Shift_left();
+			ShowDeck();
 		}
 	}
 }
@@ -119,24 +107,28 @@ void Deck::ShowDeck()
 	int i = (front + 1)%capacity;
 	while(true)
 	{
+		if(front==0&&rear==0)
+			return;
 		std::cout<<array[i];
 		if(i == rear%capacity)
 			break;
 		if(++i >= capacity)
 			i = i%capacity;
 	}
+	std::cout<<std::endl;
 }
 
 void MakeRandCard(int num)
 {
+	//1부터 52까지 배열을 만들고
+	//랜덤으로 50번 섞는다
 	int array[52];
-	//50번 섞을 것임
+	srand((unsigned)time(NULL));
 	int mixCount = 50;
 	for(int i = 0; i < 52 ; i++)
 	{
-		array[i] = i + 1;
+		array[i] = i;
 	}
-
 	for(int i = 0 ; i < mixCount ;)
 	{
 		int c1 = (rand())%52;
@@ -147,15 +139,14 @@ void MakeRandCard(int num)
 			i++;
 		}
 	}
-
 	//카드를 만들 만큼 배열의 앞부분에서 할당해줌
-	int index;
 	Deck D(10);
 	for(int i = 0; i < num ; i++)
 	{
 		Card C;
 		switch(array[i]/13)
 		{
+		//숫자를 13으로 나눈 몫이 모양, 나머지가 (1 ~ 13) 번호가 된다.
 		case 0 :
 			C.shape = Clover;
 			break;
@@ -172,13 +163,13 @@ void MakeRandCard(int num)
 			C.shape = none;
 			break;
 		}
+		//생성한 카드에 데이터를 집어넣는다ㅓ
 		C.cardNum = array[i]%13 + 1;
 		C.cardRank = array[i] + 1;
-		index = D.GetCardIndex(C);
-		std::cout<<"이번에 넣을 카드 번호는 : "<<array[i] + 1<<std::endl;
-		D.MoveCard(C,index);
-		D.ShowDeque();
-		D.ShowDeck();
+		std::cout<<"이번에 넣을 카드 : "
+				 << C <<std::endl;
+		D.MoveCard(C);
+		std::cout<<"-------------------------------"<<std::endl;
 	}
 
 }

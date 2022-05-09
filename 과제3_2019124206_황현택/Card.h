@@ -45,7 +45,7 @@ Card::Card(cardShape _shape, int _num)
 		cardRank = 0;
 	}
 	else
-		cardRank = shape * 100 + cardNum;
+		cardRank = shape * 13 + cardNum;
 }
 
 Card::~Card()
@@ -81,21 +81,18 @@ void Card::GetCardData()
 
 std::ostream& operator << (std::ostream& os, Card& C)
 {
-	std::string array[5];
-	array[0] = "None";
-	array[1] = "Clover";
-	array[2] = "Heart";
-	array[3] = "Diamond";
-	array[4] = "Spaid";
-	os << "shape는 : "<<array[C.shape]<<" number는 : "<<C.cardNum<<std::endl;
+	const char* array[5] = {"X", "♣", "♥", "◆", "♠"};
+	os 
+	<<"|"<<array[C.shape]<<" "<<C.cardNum<< "|  ";
 	return os;
 }
 
 bool operator > (Card& C1, Card& C2)
 {
 	if(C1.shape == none)
-		return true;
-	std::cout<<C1.cardRank<<"//"<<C2.cardRank<<std::endl;
+		return false;
+	if(C2.shape == none)
+		return false;
 	if(C1.cardRank >= C2.cardRank)
 	{
 		return true;
