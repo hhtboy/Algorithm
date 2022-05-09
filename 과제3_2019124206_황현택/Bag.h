@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 template <class T>
 class Bag
@@ -9,11 +10,18 @@ protected:
     int top;
 
 public:
-    Bag();
-    virtual ~Bag();
-    virtual int Size() const;
-    virtual bool isEmpty();
-    virtual void Push(const T &x);
-    virtual void Pop();
+	Bag()
+	{
+		std::cout<<"bag 생성"<<std::endl;
+	}
+    virtual ~Bag()
+	{
+		std::cout<<"bag 소멸"<<std::endl;
+	} 
+    virtual int Size() const = 0;
+    virtual bool isEmpty() = 0;
+    virtual void Push(const T &x) = 0;
+    virtual void Pop() = 0;
 };
+
 
