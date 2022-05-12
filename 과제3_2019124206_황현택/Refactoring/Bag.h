@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+
+//컨테이너 형식의 클래스 템플릿
 template <class T>
 class Bag
 {
@@ -10,12 +12,9 @@ protected:
     int top;
 
 public:
-	Bag()
-	{
-	}
-    virtual ~Bag()
-	{
-	} 
+	Bag(){}
+	//Bag의 자식이 상속받는 순수가상함수
+    virtual ~Bag(){}
     virtual int Size() const = 0;
     virtual bool isEmpty() = 0;
     virtual void Push(const T &x) = 0;

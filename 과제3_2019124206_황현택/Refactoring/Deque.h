@@ -1,16 +1,19 @@
 #pragma once
 #include <iostream>
 #include "Bag.h"
-#include "Card.h"
+
+//Bag를 상속받은 클래스 템플릿
 template <class U>
 class Deque : public Bag<U>
 {
 protected:
+	//데이터의 시작과 끝 index
+	//front는 비워두고, 다음 index 부터 채워넣음
 	int front;
 	int rear;
 
 public:
-    //생성자 소멸자
+	//기본 생성자를 정의하지 않으면 템플릿 클래스를 생성할 때 컴파일 에러가 생김
 	Deque(){};
     Deque(int n);
     ~Deque();
@@ -19,24 +22,22 @@ public:
 
     bool isEmpty();
 
+	//deque가 가득 찼을 때 true 반환(front 제외)
 	bool isFull();
 
+	//가득찬 deque의 크기를 늘림
 	void ChangeSize1D();
 
 	void Push(const U& x);
-
-	void Push_right(const U& x);
-
-	void Push_left(const U& x);
-
+	void Push_Rear(const U& x);
+	void Push_Front(const U& x);
     void Pop();
+	void Pop_Rear();
+	void Pop_Front();
 
-	void Pop_right();
-
-	void Pop_left();
-
+	//디큐를 왼쪽으로 한칸씩 이동
 	void Shift_left();
-
+	//디큐를 오른쪽으로 한칸씩 이동
 	void Shift_right();
 };
 
@@ -142,7 +143,7 @@ void Deque<U>::Push(const U& x)
 
 //rear 오른쪽에 데이터 삽입
 template <class U>
-void Deque<U>::Push_right(const U& x)
+void Deque<U>::Push_Rear(const U& x)
 {
 	if(isFull())
 	{
@@ -157,7 +158,7 @@ void Deque<U>::Push_right(const U& x)
 
 //front 왼쪽에 데이터 삽입
 template <class U>
-void Deque<U>::Push_left(const U& x)
+void Deque<U>::Push_Front(const U& x)
 {
 	if(isFull())
 	{
@@ -192,7 +193,7 @@ void Deque<U>::Pop()
 }
 
 template <class U>
-void Deque<U>::Pop_right()
+void Deque<U>::Pop_Rear()
 {
 	this->array[rear%this->capacity].~U();
 	//rear == 0이면 rear을 감소시킬 때 맨 뒤로 보냄
@@ -206,7 +207,7 @@ void Deque<U>::Pop_right()
 }
 
 template <class U>
-void Deque<U>::Pop_left()
+void Deque<U>::Pop_Front()
 {
 	this->array[(front + 1)%this->capacity].~U();
 	front++;
@@ -219,32 +220,15 @@ template <class U>
 void Deque<U>::Shift_left()
 {
 	//Push할 때 데이터를 보존하기 위해 push->pop순서로 한다
-	Push_right(this->array[(front + 1)%this->capacity]);
-	Pop_left();
+	Push_Rear(this->array[(front + 1)%this->capacity]);
+	Pop_Front();
 }
-
 template <class U>
 void Deque<U>::Shift_right()
 {
 	//Push할 때 데이터를 보존하기 위해 push->pop순서로 한다
-	Push_left(this->array[rear%this->capacity]);
-	Pop_right();
+	Push_Front(this->array[rear%this->capacity]);
+	Pop_Rear();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

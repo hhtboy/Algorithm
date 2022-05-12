@@ -1,5 +1,10 @@
 #pragma once
 #include <iostream>
+#include "Deck.h"
+
+class Deck;
+
+//카드의 모양 열거형
 enum cardShape
 {
 	none = 0,
@@ -18,6 +23,7 @@ void swap(int& x, int& y)
 
 class Card {
 private:
+	//카드 모양
 	enum cardShape shape;
 	//1~13 
 	int cardNum;
@@ -27,10 +33,9 @@ public:
 	Card(){};
 	Card(cardShape _shape, int _num);
 	~Card();
-	void GetCardData();
-	void GetCardRank();
 	//랜덤으로 카드를 만듬
-	friend void MakeRandCard(int num);
+	Card MakeRandCard();
+	friend void Deck::MakeRandCard(int n);
 	friend std::ostream& operator << (std::ostream& os, Card& C);
 	friend bool operator > (Card& C1, Card& C2);
 };
@@ -54,41 +59,28 @@ Card::~Card()
 	cardNum = 0;
 }
 
-void Card::GetCardData()
+Card Card::MakeRandCard()
 {
-	switch(shape)
-	{
-	case Spaid:
-		std::cout<<"카드의 모양 : Spaid "<<"카드의 번호 : "<<cardNum<<std::endl;
-		break;
-	case Diamond:
-		std::cout<<"카드의 모양 : Spaid "<<"카드의 번호 : "<<cardNum<<std::endl;
-		break;
-	case Heart:
-		std::cout<<"카드의 모양 : Spaid "<<"카드의 번호 : "<<cardNum<<std::endl;
-		break;
-	case Clover:
-		std::cout<<"카드의 모양 : Spaid "<<"카드의 번호 : "<<cardNum<<std::endl;
-		break;
-
-	default:
-		std::cout<<"잘못된 카드입니다"<<std::endl;
-
-	}
+	Card C;
+	
+	return C;
 }
 
-
-
+//카드 출력연산자 오버로딩
 std::ostream& operator << (std::ostream& os, Card& C)
 {
+	//배열에서 알맞은 shape에 따른 char를 출력해줌
 	const char* array[5] = {"X", "♣", "♥", "◆", "♠"};
 	os 
 	<<"|"<<array[C.shape]<<" "<<C.cardNum<< "|  ";
 	return os;
 }
 
+//비교연산자 > 오버로딩
 bool operator > (Card& C1, Card& C2)
 {
+	//isFront 메소드에서 배열이 비어있을 경우 무한반복하는 것을 막기 위해
+	//C1, C2가 none일 경우 false를 반환해 isFront의 반복문을 멈추게 함
 	if(C1.shape == none)
 		return false;
 	if(C2.shape == none)
@@ -97,11 +89,6 @@ bool operator > (Card& C1, Card& C2)
 	{
 		return true;
 	}
-	else
-		return false;
-}
 
-void Card::GetCardRank()
-{
-	std::cout<<"card rank = "<<cardRank<<std::endl;
+	return false;
 }
