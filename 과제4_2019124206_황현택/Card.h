@@ -25,17 +25,43 @@ private:
 	int cardRank;
 public:
 	Card(){};
+	Card(int _num);
 	Card(cardShape _shape, int _num);
 	~Card();
 	void GetCardData();
 	void GetCardRank();
 	//랜덤으로 카드를 만듬
-	friend void MakeRandCard(int num);
 	friend std::ostream& operator << (std::ostream& os, Card& C);
 	friend bool operator > (Card& C1, Card& C2);
 	friend bool operator != (Card& C,int);
 };
 
+Card::Card(int _num)
+{
+	cardRank = _num + 1;
+	cardNum = _num % 13 + 1;
+	switch (_num / 13 + 1)
+	{
+	case 0:
+		shape = none;
+		break;
+	case 1:
+		shape = Spaid;
+		break;
+	case 2:
+		shape = Diamond;
+		break;
+	case 3:
+		shape = Heart;
+		break;
+	case 4:
+		shape = Clover;
+		break;
+	default:
+		shape = none;
+		break;
+	}
+}
 
 Card::Card(cardShape _shape, int _num)
 {
@@ -77,8 +103,6 @@ void Card::GetCardData()
 
 	}
 }
-
-
 
 std::ostream& operator << (std::ostream& os, Card& C)
 {

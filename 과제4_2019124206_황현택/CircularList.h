@@ -107,9 +107,7 @@ public:
 		friend std::ostream& operator<<(std::ostream& os, const CircularIterator& iter)
 		{
 			os <<
-			"current = "<<
-			iter.current->data<<
-			std::endl;
+			iter.current->data;
 			return os;
 		}
 
@@ -145,6 +143,7 @@ void CircularList<T>::InsertFront(const T& e)
 		first->nextNode = last;
 		last->nextNode = first;
 	}
+	std::cout<<"이번에 삽입할 카드는 : "<<newNode->data<<std::endl;
 }
 
 template <class T>
@@ -156,13 +155,13 @@ void CircularList<T>::SortList()
 		{
 			Swap(iter.current);
 			ShowList();
-			std::cout<<"\n";
 		}
 		else
 		{
 			iter++;
 		}
 	}
+	std::cout<<std::endl<<std::endl;
 }
 
 template <class T>
@@ -195,4 +194,5 @@ void CircularList<T>::ShowList()
 	{
 		std::cout<<iter;
 	}
+	std::cout<<std::endl;
 }

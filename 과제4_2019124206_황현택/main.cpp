@@ -3,6 +3,9 @@
 #include "CircularList.h"
 #include "Card.h"
 
+//n 크기의 랜덤한 배열 생성
+int* MakeRandArr(int n);
+
 int main()
 {
 	/*
@@ -23,26 +26,48 @@ int main()
 	*/
 
 
+	//연결리스트 생성
 	CircularList<Card> C;
 	
-	Card C1(Heart,10);
-	Card C2(Spaid,10);
-	Card C3(Diamond,10);
-	Card C4(Clover,10);
-	Card C5(Clover,1);
+	//리스트에 넣을 랜덤 카드 생성
+	//랜덤 데이터를 갖는 배열 생성
+	int* arr = MakeRandArr(5);
 
-	C.InsertFront(C1);
-	C.SortList();
-
-	C.InsertFront(C2);
-	C.SortList();
-
-	C.InsertFront(C3);
-	C.SortList();
-
-	C.InsertFront(C4);
-	C.SortList();
-
-	C.InsertFront(C5);
-	C.SortList();
+	for(int i = 0; i<5;i++)
+	{
+		Card MyCard(arr[i]);
+		C.InsertFront(MyCard);
+		C.ShowList();
+		C.SortList();
+	}
 }
+
+int* MakeRandArr(int n)
+{
+	int* result = new int[n];
+	int array[52];
+	srand((unsigned)time(NULL));
+	int mixCount = 50;
+	for(int i = 0; i < 52 ; i++)
+	{
+		array[i] = i;
+	}
+	for(int i = 0 ; i < mixCount ;)
+	{
+		int c1 = (rand())%52;
+		int c2 = (rand())%52;
+		if(c1 != c2)
+		{
+			swap(array[c1],array[c2]);
+			i++;
+		}
+	}
+	for(int i = 0; i < n; i++)
+	{
+		result[i] = array[i];
+	}
+
+	return result;
+}
+
+
